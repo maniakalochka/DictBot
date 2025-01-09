@@ -26,6 +26,7 @@ class Settings(BaseSettings):
 
     # --- Auth Settings ---
     TELEGRAM_TOKEN: str
+    YC_API_KEY: str
     # --- Other Settings ---
     TEST_DB_USER: str
     TEST_DB_PASS: str
