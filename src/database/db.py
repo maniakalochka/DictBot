@@ -7,7 +7,6 @@ from sqlalchemy.ext.asyncio import (
 from sqlalchemy.pool import NullPool
 
 from core.config import settings
-
 from models.base import Base
 
 if settings.MODE == "TEST":
