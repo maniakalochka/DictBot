@@ -5,7 +5,8 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from models.user import User
-    from user_words_mnm import user_words
+
+from .user_words_mnm import user_words
 
 
 class Word(Base):

@@ -3,9 +3,9 @@ from models.base import Base
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from models.word import Word
-    from user_words_mnm import user_words
+from .word import Word
+
+from .user_words_mnm import user_words
 
 
 class User(Base):
