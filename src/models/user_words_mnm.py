@@ -2,7 +2,7 @@ from sqlalchemy import Table, Column, ForeignKey
 from sqlalchemy.sql.schema import PrimaryKeyConstraint
 from .base import Base
 
-# Промежуточная таблица для связи многие-ко-многим
+# Виртуальная таблица для связи многие-ко-многим
 user_words = Table(
     "user_words",
     Base.metadata,

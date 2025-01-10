@@ -4,7 +4,7 @@ from aiogram.types import KeyboardButton
 
 class BaseKeyboard:
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.builder = ReplyKeyboardBuilder()
 
     def add_button(self, label: str) -> None:
