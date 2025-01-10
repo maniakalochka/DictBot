@@ -15,7 +15,6 @@ def get_iam_token(oauth_token):
         raise Exception(f"Error: {response.status_code}, {response.text}")
 
 
-# Замените на ваш OAuth-токен
 oauth_token = settings.YC_API_KEY
 
 try:

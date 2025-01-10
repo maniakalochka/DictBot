@@ -3,6 +3,7 @@ from aiogram import Dispatcher
 from aiogram.filters import Command
 from aiogram.types import Message
 from repositories.user_repo import UserRepository
+from logic.reader import reader, filename
 
 
 dp = Dispatcher()
@@ -18,3 +19,9 @@ async def command_start_handler_and_add_user(message: Message) -> None:
     user = await repo.create_user_if_does_not_exist(**user_data)
 
     await message.answer(START_CMD)
+
+
+@dp.message(Command("random"))
+async def command_random_handler(message: Message) -> None:
+    random_word = await reader(filename)
+    await message.answer(random_word)
