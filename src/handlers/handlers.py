@@ -4,6 +4,7 @@ from aiogram.filters import Command
 from aiogram.types import Message
 from repositories.user_repo import UserRepository
 from logic.reader import reader, filename
+from .keyboards import LearnWordKeyboard
 
 
 dp = Dispatcher()
@@ -21,7 +22,9 @@ async def command_start_handler_and_add_user(message: Message) -> None:
     await message.answer(START_CMD)
 
 
-@dp.message(Command("random"))
+@dp.message(Command("learn_word"))
 async def command_random_handler(message: Message) -> None:
     random_word = await reader(filename)
-    await message.answer(random_word)
+    keyboard = LearnWordKeyboard()
+    markup = keyboard.get_keyboard()
+    await message.answer(random_word, reply_markup=markup)
