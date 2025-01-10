@@ -1,28 +1,12 @@
 from text_messages.text import *
-from aiogram import Dispatcher
 from aiogram.filters import Command
 from aiogram.types import Message
-from repositories.user_repo import UserRepository
-from logic.reader import reader, filename
-from .keyboards import LearnWordKeyboard
+from extraction.reader import reader, filename
+from ..keyboards.reply_keyboards.learn_word_kb import LearnWordKeyboard
+from dispatcher import dp
 
 
-dp = Dispatcher()
-
-
-@dp.message(Command("start"))
-async def command_start_handler_and_add_user(message: Message) -> None:
-    repo = UserRepository()
-    user_data = {
-        "tg_id": message.from_user.id,
-        "username": message.from_user.username,
-    }
-    user = await repo.create_user_if_does_not_exist(**user_data)
-
-    await message.answer(START_CMD)
-
-
-@dp.message(Command("learn_word"))
+@dp.message(Command("learn_words"))
 async def command_random_handler(message: Message) -> None:
     random_word = await reader(filename)
     keyboard = LearnWordKeyboard()
