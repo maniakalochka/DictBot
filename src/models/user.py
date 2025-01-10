@@ -1,6 +1,11 @@
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from models.base import Base
 from datetime import datetime
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from models.word import Word
+    from user_words_mnm import user_words
 
 
 class User(Base):
@@ -12,5 +17,10 @@ class User(Base):
     created_date: Mapped[datetime] = mapped_column(default=datetime.now())
     is_active: Mapped[bool] = mapped_column(default=True)
 
-    def __str__(self):
+    # Связь с словами через промежуточную таблицу
+    words: Mapped[list["Word"]] = relationship(
+        "Word", secondary=user_words, back_populates="users"
+    )
+
+    def __str__(self) -> str:
         return f"Username {self.username}, TG_ID {self.tg_id}, DB_ID {self.id}"
