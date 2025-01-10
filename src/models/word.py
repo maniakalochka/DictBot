@@ -12,7 +12,6 @@ from .user_words_mnm import user_words
 class Word(Base):
     __tablename__ = "words"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
     word: Mapped[str] = mapped_column(nullable=False)
     level: Mapped[str] = mapped_column(nullable=False)
     pos: Mapped[str] = mapped_column(nullable=False)

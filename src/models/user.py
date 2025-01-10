@@ -11,7 +11,6 @@ from .user_words_mnm import user_words
 class User(Base):
     __tablename__ = "users"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
     tg_id: Mapped[int] = mapped_column(unique=True, nullable=False)
     username: Mapped[str] = mapped_column(unique=True, nullable=False)
     created_date: Mapped[datetime] = mapped_column(default=datetime.now())
