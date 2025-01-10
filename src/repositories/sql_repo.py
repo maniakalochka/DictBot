@@ -7,7 +7,7 @@ from sqlalchemy import insert
 class SQLAlchemyRepository:
     model = None
 
-    async def create_user_if_does_not_exist(self, **kwargs):
+    async def create_if_does_not_exist(self, **kwargs):
         async with async_session() as session:
             stmt = insert(self.model).values(**kwargs).returning(self.model.id)
             res = await session.execute(stmt)

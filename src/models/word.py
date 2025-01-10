@@ -18,8 +18,8 @@ class Word(Base):
     definition_url: Mapped[str] = mapped_column(nullable=True)
     voice_url: Mapped[str] = mapped_column(nullable=True)
     tg_id: Mapped[int] = mapped_column(unique=True, nullable=False)
-    created_date: Mapped[datetime] = mapped_column(default=datetime.now())
-    count: Mapped[int] = mapped_column(default=0, autoincrement=True)
+    created_date: Mapped[datetime] = mapped_column(default=datetime.utcnow())
+    count: Mapped[int] = mapped_column(default=0, nullable=False)
 
     # Связь с пользователями через промежуточную таблицу
     users: Mapped[list["User"]] = relationship(

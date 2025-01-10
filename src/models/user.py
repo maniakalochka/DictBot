@@ -13,7 +13,7 @@ class User(Base):
 
     tg_id: Mapped[int] = mapped_column(unique=True, nullable=False)
     username: Mapped[str] = mapped_column(unique=True, nullable=False)
-    created_date: Mapped[datetime] = mapped_column(default=datetime.now())
+    created_date: Mapped[datetime] = mapped_column(default=datetime.utcnow())
     is_active: Mapped[bool] = mapped_column(default=True)
 
     # Связь с словами через промежуточную таблицу
