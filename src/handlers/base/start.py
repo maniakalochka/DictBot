@@ -1,4 +1,4 @@
-from dispatcher import dp
+from ..dispatcher import dp
 from text.text import START_CMD
 from aiogram.filters import Command
 from repositories.user_repo import UserRepository

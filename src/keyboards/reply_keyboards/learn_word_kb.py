@@ -1,4 +1,4 @@
-from base_kb import BaseReplyKeyboard
+from .base_kb import BaseReplyKeyboard
 
 
 class LearnWordKeyboard(BaseReplyKeyboard):

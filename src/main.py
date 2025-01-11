@@ -4,7 +4,9 @@ import sys
 
 from aiogram import Bot
 from core.config import settings
-from handlers.handlers import *
+from handlers.dispatcher import dp
+from handlers.logic import sorting
+from handlers.base import start
 from database.db import init_db
 
 
