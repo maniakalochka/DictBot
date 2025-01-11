@@ -10,9 +10,9 @@ async def command_random_handler(message: Message) -> None:
     random_word = await reader(filename)
     keyboard = LearnWordKeyboard()
     markup = keyboard.get_keyboard()
-    await message.answer(random_word, reply_markup=markup)
+    await message.answer(text=random_word, reply_markup=markup)
 
 
 @dp.message(lambda message: message.text == "✅")
-async def command_already_know_word_handler(message: Message) -> None:
+async def already_know_word_handler(message: Message) -> None:
     await message.answer("Добавлено в изученные слова")
