@@ -15,5 +15,4 @@ async def command_random_handler(message: Message) -> None:
 
 @dp.message(lambda message: message.text == "✅")
 async def command_already_know_word_handler(message: Message) -> None:
-
     await message.answer("Добавлено в изученные слова")
