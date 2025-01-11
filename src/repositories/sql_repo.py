@@ -1,8 +1,6 @@
 from database.db import async_session
 from sqlalchemy import insert
 
-# from sqlalchemy.exc import SQLAlchemyError
-
 
 class SQLAlchemyRepository:
     model = None

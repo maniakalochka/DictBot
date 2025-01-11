@@ -2,7 +2,6 @@ import pytest
 from repositories.user_repo import UserRepository
 from models.user import User
 
-# from conftest import async_session
 from sqlalchemy.sql import select
 
 

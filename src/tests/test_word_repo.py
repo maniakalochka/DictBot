@@ -2,8 +2,6 @@ import pytest
 from repositories.word_repo import WordRepository
 from models.word import Word
 
-# from conftest import async_session
-
 from sqlalchemy.sql import select
 
 

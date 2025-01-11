@@ -27,18 +27,6 @@ async_session = async_sessionmaker(
 )
 
 
-async def get_db():
-    """Create async session"""
-    async with async_session() as session:
-        try:
-            yield session
-        except Exception as e:
-            await session.rollback()
-            raise e
-        finally:
-            await session.close()
-
-
 async def init_db() -> None:
     """Init database tables"""
     async with engine.begin() as conn:
