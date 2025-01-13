@@ -1,7 +1,7 @@
 from .base_kb import BaseReplyKeyboard
 
 
-class LearnWordKeyboard(BaseReplyKeyboard):
+class SortWordsKeyboard(BaseReplyKeyboard):
     def __init__(self) -> None:
         super().__init__()
         self.add_custom_button()
