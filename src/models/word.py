@@ -24,10 +24,7 @@ class Word(Base):
     is_skipped: Mapped[bool] = mapped_column(default=False, nullable=False)
     is_repeatable: Mapped[bool] = mapped_column(default=False, nullable=False)
 
-    # user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
     user: Mapped["User"] = relationship("User", back_populates="words")
-
-    # user: Mapped["User"] = relationship("User", back_populates="words")
 
     def __str__(self) -> str:
         return f"Word {self.word}:{self.id}"
