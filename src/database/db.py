@@ -25,9 +25,3 @@ engine: AsyncEngine = create_async_engine(
 async_session = async_sessionmaker(
     bind=engine, class_=AsyncSession, autoflush=True, expire_on_commit=False
 )
-
-
-async def init_db() -> None:
-    """Init database tables"""
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)

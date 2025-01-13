@@ -7,7 +7,6 @@ from core.config import settings
 from handlers.dispatcher import dp
 from handlers.logic import sorting
 from handlers.base import start
-from database.db import init_db
 
 
 TOKEN = settings.TELEGRAM_TOKEN
@@ -15,7 +14,6 @@ TOKEN = settings.TELEGRAM_TOKEN
 
 async def main() -> None:
     bot = Bot(token=TOKEN)
-    await init_db()
     await dp.start_polling(bot)
 
 

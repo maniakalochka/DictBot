@@ -8,7 +8,12 @@ from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
 
 from core.config import settings
-from database.db import Base
+
+# from database.db import Base
+from models.user import User
+
+from models.word import Word
+from models.base import Base
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 # Настройка логирования
