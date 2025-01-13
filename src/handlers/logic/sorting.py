@@ -34,6 +34,57 @@ async def already_know_word_handler(message: Message, state: FSMContext) -> None
         repo = WordRepository()
         await repo.skip_word(word=skipped_word["word"])
         await message.answer("Скипнул слово.")
-        await state.clear()
+
+        random_word_data = await reader(filename)
+        tg_id = message.from_user.id
+        random_word_data["tg_id"] = tg_id
+        await repo.create_if_does_not_exist(**random_word_data)
+        await state.update_data(random_word_data=random_word_data)
+
+        keyboard = LearnWordKeyboard()
+        markup = keyboard.get_keyboard()
+        await message.answer(text=random_word_data["word"], reply_markup=markup)
+    else:
+        await message.answer("Слово не найдено.")
+
+
+@dp.message(lambda message: message.text == "➕")
+async def add_word_handler(message: Message, state: FSMContext) -> None:
+    data = await state.get_data()
+    new_word = data.get("random_word_data")
+    if new_word:
+        repo = WordRepository()
+        await repo.create_if_does_not_exist(**new_word)
+        await message.answer("Добавил слово в словарь.")
+
+        random_word_data = await reader(filename)
+        tg_id = message.from_user.id
+        random_word_data["tg_id"] = tg_id
+        await repo.create_if_does_not_exist(**random_word_data)
+        await state.update_data(random_word_data=random_word_data)
+        keyboard = LearnWordKeyboard()
+        markup = keyboard.get_keyboard()
+        await message.answer(text=random_word_data["word"], reply_markup=markup)
+    else:
+        await message.answer("Слово не найдено.")
+
+
+@dp.message(lambda message: message.text == "🔄")
+async def repeat_word_handler(message: Message, state: FSMContext) -> None:
+    data = await state.get_data()
+    new_word = data.get("random_word_data")
+    if new_word:
+        repo = WordRepository()
+        await repo.create_if_does_not_exist(**new_word)
+        await message.answer("Добавил слово в словарь.")
+
+        random_word_data = await reader(filename)
+        tg_id = message.from_user.id
+        random_word_data["tg_id"] = tg_id
+        await repo.create_if_does_not_exist(**random_word_data)
+        await state.update_data(random_word_data=random_word_data)
+        keyboard = LearnWordKeyboard()
+        markup = keyboard.get_keyboard()
+        await message.answer(text=random_word_data["word"], reply_markup=markup)
     else:
         await message.answer("Слово не найдено.")

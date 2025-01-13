@@ -9,5 +9,5 @@ class LearnWordKeyboard(BaseReplyKeyboard):
     def add_custom_button(self) -> None:
         self.add_button("✅")
         self.add_button("🔄")
-        self.add_button("❌")
+        self.add_button("➕")
         self.add_button("🔙")
