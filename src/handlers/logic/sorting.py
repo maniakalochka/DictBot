@@ -1,5 +1,5 @@
 from ..dispatcher import dp
-from aiogram.types import Message
+from aiogram.types import Message, ReplyKeyboardRemove
 from aiogram.filters import Command
 from extraction.reader import reader, filename
 from keyboards.reply_keyboards.learn_word_kb import LearnWordKeyboard
@@ -55,7 +55,7 @@ async def add_word_handler(message: Message, state: FSMContext) -> None:
     if new_word:
         repo = WordRepository()
         await repo.create_if_does_not_exist(**new_word)
-        await message.answer("Добавил слово в словарь.")
+        await message.answer("Добавил в словарь.")
 
         random_word_data = await reader(filename)
         tg_id = message.from_user.id
@@ -76,7 +76,7 @@ async def repeat_word_handler(message: Message, state: FSMContext) -> None:
     if new_word:
         repo = WordRepository()
         await repo.create_if_does_not_exist(**new_word)
-        await message.answer("Добавил слово в словарь.")
+        await message.answer("Добавил в словарь")
 
         random_word_data = await reader(filename)
         tg_id = message.from_user.id
@@ -88,3 +88,11 @@ async def repeat_word_handler(message: Message, state: FSMContext) -> None:
         await message.answer(text=random_word_data["word"], reply_markup=markup)
     else:
         await message.answer("Слово не найдено.")
+
+
+@dp.message(lambda message: message.text == "🔙")
+async def back_to_main_menu_handler(message: Message, state: FSMContext) -> None:
+    await message.answer(
+        "Возвращаю в главное меню.", reply_markup=ReplyKeyboardRemove()
+    )
+    await state.clear()
