@@ -7,7 +7,7 @@ class SortWordsKeyboard(BaseReplyKeyboard):
         self.add_custom_button()
 
     def add_custom_button(self) -> None:
-        self.add_button("✅")
-        self.add_button("🔄")
-        self.add_button("➕")
-        self.add_button("🔙")
+        self.add_button("✅")  # Знает слово
+        self.add_button("🔄")  # Хотел бы отправить на повтор
+        self.add_button("➕")  # Добавить в словарь
+        self.add_button("🔙")  # Назад в меню

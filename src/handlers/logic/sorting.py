@@ -12,7 +12,7 @@ class SortWordsState(StatesGroup):
     waiting_for_response = State()
 
 
-@dp.message(Command("learn_words"))
+@dp.message(Command("sort"))
 async def command_random_handler(message: Message, state: FSMContext) -> None:
     random_word_data = await reader(filename)
     keyboard = SortWordsKeyboard()

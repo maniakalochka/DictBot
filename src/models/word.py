@@ -27,4 +27,4 @@ class Word(Base):
     user: Mapped["User"] = relationship("User", back_populates="words")
 
     def __str__(self) -> str:
-        return f"Word {self.word}:{self.id}"
+        return f"{self.word}"

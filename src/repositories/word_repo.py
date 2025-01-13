@@ -1,7 +1,7 @@
 from .sql_repo import SQLAlchemyRepository
 from models.word import Word
 from models.user import User
-from sqlalchemy import update, insert, select
+from sqlalchemy import update, insert, select, func
 from database.db import async_session
 
 
@@ -43,4 +43,16 @@ class WordRepository(SQLAlchemyRepository):
                 # Добавляем связь между пользователем и словом
                 user.words.append(word)
 
-                await session.commit()  # Сохраняем все изменения
+                await session.commit()
+
+    async def get_random_word(self, user_tg_id: int) -> Word:
+        async with async_session() as session:
+            stmt = (
+                select(self.model)
+                .filter(self.model.tg_id == user_tg_id, self.model.is_skipped == False)
+                .order_by(func.random())
+            )  # сортировка случайным образом
+
+            result = await session.execute(stmt)
+            word = result.scalars().first()
+            return word

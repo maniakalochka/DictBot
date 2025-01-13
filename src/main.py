@@ -5,7 +5,7 @@ import sys
 from aiogram import Bot
 from core.config import settings
 from handlers.dispatcher import dp
-from handlers.logic import sorting
+from handlers.logic import sorting, memorization
 from handlers.base import start
 
 
