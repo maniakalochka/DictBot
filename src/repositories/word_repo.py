@@ -56,3 +56,13 @@ class WordRepository(SQLAlchemyRepository):
             result = await session.execute(stmt)
             word = result.scalars().first()
             return word
+
+    async def update_count(self, word: str) -> None:
+        async with async_session() as session:
+            stmt = (
+                update(self.model)
+                .where(self.model.word == word)
+                .values(count=self.model.count + 1)
+            )
+            await session.execute(stmt)
+            await session.commit()
